@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Club Hack</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:Arial,sans-serif;
+      background:linear-gradient(135deg,#000000,#1a1a1a,#330000);
+      color:#fff;
+      min-height:100vh;
+    }
+    .container{
+      max-width:900px;
+      margin:30px auto;
+      padding:20px;
+    }
+    .card{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,0,0,0.4);
+      border-radius:20px;
+      padding:30px;
+      box-shadow:0 0 25px rgba(255,0,0,0.25);
+      backdrop-filter:blur(10px);
+    }
+    h1{
+      text-align:center;
+      color:#ff2b2b;
+      margin-bottom:10px;
+      font-size:3rem;
+    }
+    .subtitle{
+      text-align:center;
+      color:#ddd;
+      margin-bottom:30px;
+    }
+    input, button{
+      width:100%;
+      padding:15px;
+      margin:10px 0;
+      border:none;
+      border-radius:12px;
+      font-size:16px;
+    }
+    input{
+      background:#111;
+      color:#fff;
+      border:1px solid #444;
+    }
+    button{
+      background:linear-gradient(90deg,#ff0000,#cc0000);
+      color:#fff;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    button:hover{transform:scale(1.02);}
+    .hidden{display:none;}
+    .result{
+      margin-top:20px;
+      padding:20px;
+      text-align:center;
+      font-size:2rem;
+      font-weight:bold;
+      border-radius:15px;
+    }
+    .big{background:#16a34a;}
+    .small{background:#2563eb;}
+    .note{
+      margin-top:25px;
+      background:#111;
+      padding:20px;
+      border-left:5px solid #ff0000;
+      border-radius:10px;
+      line-height:1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>CLUB HACK</h1>
+      <p class="subtitle">Advanced Prediction Dashboard</p><div id="loginSection">
+    <input type="text" placeholder="Phone Number / मोबाइल नंबर" id="phone">
+    <input type="password" placeholder="Password / पासवर्ड" id="password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <input type="number" id="predictionInput" placeholder="Enter Number / नंबर दर्ज करें">
+    <button onclick="predictResult()">Submit Prediction</button>
+    <div id="resultBox" class="result hidden"></div>
+
+    <div class="note">
+      <strong>Important Note / महत्वपूर्ण सूचना:</strong><br><br>
+      • Hack ka payment karne ke baad hi hack sahi kaam karega.<br>
+      • The hack will work properly only after payment is completed.<br><br>
+      • Club se registered number hi sahi work karega.<br>
+      • Only the number registered with the club will work correctly.
+    </div>
+  </div>
+</div>
+
+  </div>  <script>
+    function login(){
+      const phone = document.getElementById('phone').value;
+      const password = document.getElementById('password').value;
+
+      if(phone && password){
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+      } else {
+        alert('Please enter phone number and password.');
+      }
+    }
+
+    let sequence = [];
+    let currentType = 'Big';
+    let remaining = 0;
+
+    function generateSequence(){
+      const options = [1,2,2,3,4];
+      remaining = options[Math.floor(Math.random()*options.length)];
+      currentType = currentType === 'Big' ? 'Small' : 'Big';
+    }
+
+    function predictResult(){
+      if(remaining <= 0){
+        generateSequence();
+      }
+
+      const result = currentType;
+      remaining--;
+
+      const box = document.getElementById('resultBox');
+      box.classList.remove('hidden','big','small');
+      box.innerText = result;
+
+      if(result === 'Big'){
+        box.classList.add('big');
+      } else {
+        box.classList.add('small');
+      }
+    }
+  </script></body>
+</html>
